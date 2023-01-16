@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -25,6 +27,18 @@ public class Agents extends javax.swing.JFrame {
      */
     public Agents() {
         initComponents();
+        SelectAgent ();
+    }
+    
+    public void SelectAgent () {
+        try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apotekdb", "root", "");
+            St = Con.createStatement();
+            Rs = St.executeQuery("SELECT * FROM AgentTbl");
+            AgentTable.setModel(DbUtils.resultSetToTableModel(Rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -53,7 +67,7 @@ public class Agents extends javax.swing.JFrame {
         UpdateBtn = new javax.swing.JButton();
         DeleteBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        AgentTable = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
         ClearBtn = new javax.swing.JButton();
         Aphone = new javax.swing.JTextField();
@@ -93,26 +107,46 @@ public class Agents extends javax.swing.JFrame {
         });
 
         UpdateBtn.setText("UPDATE");
+        UpdateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateBtnMouseClicked(evt);
+            }
+        });
 
         DeleteBtn.setText("DELETE");
+        DeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseClicked(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        AgentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Name", "Age", "Phone", "Password", "Gender"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        AgentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgentTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(AgentTable);
 
         jLabel21.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel21.setText("AGENTS LIST");
 
         ClearBtn.setText("CLEAR");
+        ClearBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,28 +251,85 @@ public class Agents extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         // TODO add your handling code here:
         try {
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apotekdb", "root", "");
-            PreparedStatement add = Con.prepareStatement("insert into MedicineTbl values(?,?,?,?,?,?,?)");
-            add.setInt(1, Integer.valueOf(MedID.getText()));
-            add.setString(2, MedName.getText());
-            add.setInt(3, Integer.valueOf(MedPrice.getText()));
-            add.setInt(4, Integer.valueOf(MedQty.getText()));
-            add.setDate(5, MyFabDate);
-            add.setDate(6, MyExpDate);
-            add.setString(7, ComCb.getSelectedItem().toString());
+            PreparedStatement add = Con.prepareStatement("insert into AgentTbl values(?,?,?,?,?,?)");
+            add.setInt(1, Integer.valueOf(Aid.getText()));
+            add.setString(2, Aname.getText());
+            add.setInt(3, Integer.valueOf(Aage.getText()));
+            add.setString(4, Aphone.getText());
+            add.setString(5, Apass.getText());
+            add.setString(6, GenderCb.getSelectedItem().toString());
             int row = add.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Medicine Successfully Added");
+            JOptionPane.showMessageDialog(this, "Agent Successfully Added");
             Con.close();
-            SelectMed ();
+            SelectAgent ();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_AddBtnMouseClicked
+
+    private void ClearBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearBtnMouseClicked
+        // TODO add your handling code here:
+        Aid.setText("");
+        Aname.setText("");
+        Aage.setText("");
+        Aphone.setText("");
+        Apass.setText("");
+    }//GEN-LAST:event_ClearBtnMouseClicked
+
+    private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
+        // TODO add your handling code here:
+        if(Aid.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter the Agent to be delete");
+        } else {
+            try {
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apotekdb", "root", "");
+                String Id = Aid.getText();
+                String Query = "Delete from AgentTbl where Aid="+Id;
+                Statement Add = Con.createStatement();
+                Add.executeUpdate(Query);
+                SelectAgent();
+                JOptionPane.showMessageDialog(this, "Agent Successfully Deleted");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_DeleteBtnMouseClicked
+
+    private void AgentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgentTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)AgentTable.getModel();
+        int Myindex = AgentTable.getSelectedRow();
+        Aid.setText(model.getValueAt(Myindex, 0).toString());
+        Aname.setText(model.getValueAt(Myindex, 1).toString());
+        Aage.setText(model.getValueAt(Myindex, 2).toString());
+        Aphone.setText(model.getValueAt(Myindex, 3).toString());
+        Apass.setText(model.getValueAt(Myindex, 3).toString());
+    }//GEN-LAST:event_AgentTableMouseClicked
+
+    private void UpdateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateBtnMouseClicked
+        // TODO add your handling code here:
+        if(Aid.getText().isEmpty() || Aname.getText().isEmpty() || Aage.getText().isEmpty() || Aphone.getText().isEmpty() || Aphone.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Missing Information");
+        } else {
+            try {
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apotekdb", "root", "");
+                String UpdateQuery = "Update AgentTbl set Aname = '"+Aname.getText()+"'"+",Aage = "+Aage.getText()+""+",Aphone = "+Aphone.getText()+""+",Agender = '"+GenderCb.getSelectedItem().toString()+"'"+"where Aid = "+Aid.getText();
+                Statement Add = Con.createStatement();
+                Add.executeUpdate(UpdateQuery);
+                JOptionPane.showMessageDialog(this, "Agent Successfully Update");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            SelectAgent();
+        }
+    }//GEN-LAST:event_UpdateBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -278,6 +369,7 @@ public class Agents extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Aage;
     private javax.swing.JButton AddBtn;
+    private javax.swing.JTable AgentTable;
     private javax.swing.JTextField Aid;
     private javax.swing.JTextField Aname;
     private javax.swing.JTextField Apass;
@@ -296,6 +388,5 @@ public class Agents extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

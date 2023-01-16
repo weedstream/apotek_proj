@@ -30,6 +30,7 @@ public class Medicine extends javax.swing.JFrame {
     public Medicine() {
         initComponents();
         SelectMed ();
+        getCompany ();
     }
     
     public void SelectMed () {
@@ -38,6 +39,22 @@ public class Medicine extends javax.swing.JFrame {
             St = Con.createStatement();
             Rs = St.executeQuery("SELECT * FROM MedicineTbl");
             MedicineTable.setModel(DbUtils.resultSetToTableModel(Rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void getCompany () {
+        try {
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apotekdb", "root", "");
+            St = Con.createStatement();
+            String query = "SELECT * FROM CompanyTbl";
+            Rs = St.executeQuery(query);
+            
+            while (Rs.next()) {
+                String Mycomp = Rs.getString("CompName");
+                ComCb.addItem(Mycomp);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +69,7 @@ public class Medicine extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        pageCompany = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -82,8 +99,13 @@ public class Medicine extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setText("COMPANY");
+        pageCompany.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        pageCompany.setText("COMPANY");
+        pageCompany.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageCompanyMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -133,7 +155,6 @@ public class Medicine extends javax.swing.JFrame {
         });
 
         ComCb.setBackground(new java.awt.Color(204, 204, 204));
-        ComCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         AddBtn.setBackground(new java.awt.Color(153, 153, 153));
         AddBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -295,7 +316,7 @@ public class Medicine extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
+                    .addComponent(pageCompany)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
@@ -310,7 +331,7 @@ public class Medicine extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addComponent(jLabel1)
+                .addComponent(pageCompany)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -404,6 +425,12 @@ public class Medicine extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MedQtyActionPerformed
 
+    private void pageCompanyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageCompanyMouseClicked
+        // TODO add your handling code here:
+        new Company ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pageCompanyMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -451,7 +478,6 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JTextField MedQty;
     private javax.swing.JTable MedicineTable;
     private javax.swing.JButton UpdateBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -465,5 +491,6 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel pageCompany;
     // End of variables declaration//GEN-END:variables
 }

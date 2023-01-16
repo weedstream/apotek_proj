@@ -4,6 +4,8 @@
  */
 package apotek;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author badnoby
@@ -15,6 +17,12 @@ public class Apotek {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        SwingUtilities.invokeLater(new Runnable(){
+            public void run(){
+                Splash form = new Splash();
+                Splash.main(args);
+            }
+        });
     }
     
 }
