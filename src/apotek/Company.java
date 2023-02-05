@@ -69,6 +69,9 @@ public class Company extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         CompExp = new javax.swing.JTextField();
         ClearBtn = new javax.swing.JButton();
+        pageMedicine = new javax.swing.JLabel();
+        pageAgents = new javax.swing.JLabel();
+        pageSelling = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -228,20 +231,58 @@ public class Company extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        pageMedicine.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        pageMedicine.setText("MEDICINE");
+        pageMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageMedicineMouseClicked(evt);
+            }
+        });
+
+        pageAgents.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        pageAgents.setText("AGENTS");
+        pageAgents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageAgentsMouseClicked(evt);
+            }
+        });
+
+        pageSelling.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        pageSelling.setText("SELLING");
+        pageSelling.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageSellingMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(199, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pageMedicine)
+                    .addComponent(pageAgents)
+                    .addComponent(pageSelling))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(pageMedicine)
+                        .addGap(18, 18, 18)
+                        .addComponent(pageAgents)
+                        .addGap(18, 18, 18)
+                        .addComponent(pageSelling)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -329,6 +370,24 @@ public class Company extends javax.swing.JFrame {
         CompPhone.setText("");
     }//GEN-LAST:event_ClearBtnMouseClicked
 
+    private void pageMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageMedicineMouseClicked
+        // TODO add your handling code here:
+        new Medicine ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pageMedicineMouseClicked
+
+    private void pageAgentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageAgentsMouseClicked
+        // TODO add your handling code here:
+        new Agents ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pageAgentsMouseClicked
+
+    private void pageSellingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageSellingMouseClicked
+        // TODO add your handling code here:
+        new Selling ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pageSellingMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -384,5 +443,8 @@ public class Company extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel pageAgents;
+    private javax.swing.JLabel pageMedicine;
+    private javax.swing.JLabel pageSelling;
     // End of variables declaration//GEN-END:variables
 }

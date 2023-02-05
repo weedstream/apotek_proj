@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
@@ -92,8 +93,9 @@ public class Medicine extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         FabDate = new com.toedter.calendar.JDateChooser();
         ExpDate = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        ClearBtn = new javax.swing.JButton();
+        pageAgents = new javax.swing.JLabel();
+        pageSelling = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -211,6 +213,20 @@ public class Medicine extends javax.swing.JFrame {
 
         ExpDate.setBackground(new java.awt.Color(204, 204, 204));
 
+        ClearBtn.setBackground(new java.awt.Color(153, 153, 153));
+        ClearBtn.setForeground(new java.awt.Color(255, 255, 255));
+        ClearBtn.setText("CLEAR");
+        ClearBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearBtnMouseClicked(evt);
+            }
+        });
+        ClearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -253,7 +269,9 @@ public class Medicine extends javax.swing.JFrame {
                                     .addComponent(DeleteBtn)
                                     .addComponent(ComCb, 0, 144, Short.MAX_VALUE)
                                     .addComponent(FabDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ExpDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(ExpDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(8, 8, 8)
+                                .addComponent(ClearBtn))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(355, 355, 355)
                         .addComponent(jLabel12)))
@@ -292,7 +310,8 @@ public class Medicine extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddBtn)
                             .addComponent(UpdateBtn)
-                            .addComponent(DeleteBtn))
+                            .addComponent(DeleteBtn)
+                            .addComponent(ClearBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
@@ -303,11 +322,21 @@ public class Medicine extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel2.setText("AGENTS");
+        pageAgents.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        pageAgents.setText("AGENTS");
+        pageAgents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageAgentsMouseClicked(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel3.setText("SELLING");
+        pageSelling.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        pageSelling.setText("SELLING");
+        pageSelling.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageSellingMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -317,8 +346,8 @@ public class Medicine extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pageCompany)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(pageAgents)
+                    .addComponent(pageSelling))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -333,9 +362,9 @@ public class Medicine extends javax.swing.JFrame {
                 .addGap(94, 94, 94)
                 .addComponent(pageCompany)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(pageAgents)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(pageSelling)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -431,6 +460,30 @@ public class Medicine extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_pageCompanyMouseClicked
 
+    private void pageAgentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageAgentsMouseClicked
+        // TODO add your handling code here:
+        new Agents ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pageAgentsMouseClicked
+
+    private void pageSellingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageSellingMouseClicked
+        // TODO add your handling code here:
+        new Selling ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pageSellingMouseClicked
+
+    private void ClearBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearBtnMouseClicked
+        // TODO add your handling code here:
+        MedID.setText("");
+        MedName.setText("");
+        MedPrice.setText("");
+        MedQty.setText("");        
+    }//GEN-LAST:event_ClearBtnMouseClicked
+
+    private void ClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClearBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -468,6 +521,7 @@ public class Medicine extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;
+    private javax.swing.JButton ClearBtn;
     private javax.swing.JComboBox<String> ComCb;
     private javax.swing.JButton DeleteBtn;
     private com.toedter.calendar.JDateChooser ExpDate;
@@ -481,8 +535,6 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -491,6 +543,8 @@ public class Medicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel pageAgents;
     private javax.swing.JLabel pageCompany;
+    private javax.swing.JLabel pageSelling;
     // End of variables declaration//GEN-END:variables
 }
