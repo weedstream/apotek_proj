@@ -72,27 +72,37 @@ public class Company extends javax.swing.JFrame {
         pageMedicine = new javax.swing.JLabel();
         pageAgents = new javax.swing.JLabel();
         pageSelling = new javax.swing.JLabel();
+        Exit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(978, 678));
+        setUndecorated(true);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 0, 0));
 
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("MANAGE COMPANY");
 
         jLabel14.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("ID");
 
         jLabel15.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("NAME");
 
         jLabel16.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("ADDRESS");
 
         jLabel18.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("EXPERIENCE");
 
         jLabel19.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("PHONE");
 
         AddBtn.setText("ADD");
@@ -116,15 +126,16 @@ public class Company extends javax.swing.JFrame {
             }
         });
 
+        CompanyTable.setBackground(new java.awt.Color(153, 153, 153));
         CompanyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Medicine", "Agents", "Selling", "Experience", "Phone"
             }
         ));
         CompanyTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,6 +146,7 @@ public class Company extends javax.swing.JFrame {
         jScrollPane2.setViewportView(CompanyTable);
 
         jLabel21.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("COMPANY LIST");
 
         CompExp.addActionListener(new java.awt.event.ActionListener() {
@@ -159,43 +171,44 @@ public class Company extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(CompAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                    .addComponent(CompName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CompId, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(66, 66, 66)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel16))
-                                .addGap(95, 95, 95)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel19)))
+                            .addComponent(AddBtn)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(160, 160, 160)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(CompAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                                            .addComponent(CompName, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CompId, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(66, 66, 66)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel18)
-                                            .addComponent(jLabel19)))
-                                    .addComponent(AddBtn)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(160, 160, 160)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel13)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(22, 22, 22)
-                                                .addComponent(UpdateBtn)))))
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(DeleteBtn)
-                                        .addGap(61, 61, 61)
-                                        .addComponent(ClearBtn))
-                                    .addComponent(CompPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CompExp, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(22, 22, 22)
+                                        .addComponent(UpdateBtn)))))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(DeleteBtn)
+                                .addGap(61, 61, 61)
+                                .addComponent(ClearBtn))
+                            .addComponent(CompPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CompExp, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(355, 355, 355)
                         .addComponent(jLabel21)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,9 +239,9 @@ public class Company extends javax.swing.JFrame {
                     .addComponent(ClearBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jLabel21)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pageMedicine.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -255,19 +268,31 @@ public class Company extends javax.swing.JFrame {
             }
         });
 
+        Exit.setBackground(new java.awt.Color(204, 0, 0));
+        Exit.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        Exit.setForeground(new java.awt.Color(204, 0, 0));
+        Exit.setText("X");
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pageMedicine)
                     .addComponent(pageAgents)
+                    .addComponent(pageMedicine)
                     .addComponent(pageSelling))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(11, 11, 11)
+                .addComponent(Exit)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,8 +307,11 @@ public class Company extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(pageAgents)
                         .addGap(18, 18, 18)
-                        .addComponent(pageSelling)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(pageSelling))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Exit)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -388,6 +416,11 @@ public class Company extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_pageSellingMouseClicked
 
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -433,6 +466,7 @@ public class Company extends javax.swing.JFrame {
     private javax.swing.JTextField CompPhone;
     private javax.swing.JTable CompanyTable;
     private javax.swing.JButton DeleteBtn;
+    private javax.swing.JLabel Exit;
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

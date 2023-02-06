@@ -35,14 +35,14 @@ public class Splash extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("APOTEK JAYA JAYA");
 
         Exit.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        Exit.setForeground(new java.awt.Color(51, 255, 51));
+        Exit.setForeground(new java.awt.Color(255, 255, 255));
         Exit.setText("X");
         Exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -51,7 +51,7 @@ public class Splash extends javax.swing.JFrame {
         });
 
         Precentage.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        Precentage.setForeground(new java.awt.Color(51, 255, 51));
+        Precentage.setForeground(new java.awt.Color(255, 255, 255));
         Precentage.setText("%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
