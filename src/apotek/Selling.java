@@ -55,7 +55,7 @@ public class Selling extends javax.swing.JFrame {
     
     public void update () {
         int newQty;
-        newQty = oldQty - Integer.valueOf(QtyText.getText());
+        newQty = Integer.valueOf(QtyText.getText()) - oldQty ;
         try {
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apotekdb", "root", "");
                 String UpdateQuery = "Update MedicineTbl set MedQty = "+newQty+""+" where MedID = "+MedId;
@@ -98,6 +98,7 @@ public class Selling extends javax.swing.JFrame {
         pageMedicine = new javax.swing.JLabel();
         pageCompany = new javax.swing.JLabel();
         pageAgents = new javax.swing.JLabel();
+        pageAgents1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -106,7 +107,7 @@ public class Selling extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("BILLING");
+        jLabel13.setText("SELLING");
 
         jLabel14.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -271,7 +272,7 @@ public class Selling extends javax.swing.JFrame {
         });
 
         pageMedicine.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        pageMedicine.setText("MEDICINE");
+        pageMedicine.setText("Medicine");
         pageMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pageMedicineMouseClicked(evt);
@@ -279,7 +280,7 @@ public class Selling extends javax.swing.JFrame {
         });
 
         pageCompany.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        pageCompany.setText("COMPANY");
+        pageCompany.setText("Company");
         pageCompany.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pageCompanyMouseClicked(evt);
@@ -287,10 +288,18 @@ public class Selling extends javax.swing.JFrame {
         });
 
         pageAgents.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        pageAgents.setText("AGENTS");
+        pageAgents.setText("Agents");
         pageAgents.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pageAgentsMouseClicked(evt);
+            }
+        });
+
+        pageAgents1.setFont(new java.awt.Font("Noto Sans Myanmar", 0, 14)); // NOI18N
+        pageAgents1.setText("Menu");
+        pageAgents1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageAgents1MouseClicked(evt);
             }
         });
 
@@ -299,36 +308,45 @@ public class Selling extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pageCompany)
-                    .addComponent(pageMedicine)
-                    .addComponent(pageAgents))
-                .addGap(29, 29, 29)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(55, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pageCompany)
+                            .addComponent(pageMedicine)
+                            .addComponent(pageAgents))
+                        .addGap(15, 15, 15))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pageAgents1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Exit)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 24, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(pageMedicine)
+                                .addGap(18, 18, 18)
+                                .addComponent(pageCompany)
+                                .addGap(18, 18, 18)
+                                .addComponent(pageAgents))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(pageMedicine)
-                        .addGap(18, 18, 18)
-                        .addComponent(pageCompany)
-                        .addGap(18, 18, 18)
-                        .addComponent(pageAgents))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Exit)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pageAgents1)
+                            .addComponent(Exit))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -410,6 +428,10 @@ public class Selling extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitMouseClicked
 
+    private void pageAgents1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageAgents1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pageAgents1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -465,6 +487,7 @@ public class Selling extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel pageAgents;
+    private javax.swing.JLabel pageAgents1;
     private javax.swing.JLabel pageCompany;
     private javax.swing.JLabel pageMedicine;
     // End of variables declaration//GEN-END:variables

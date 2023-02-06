@@ -75,6 +75,7 @@ public class Agents extends javax.swing.JFrame {
         pageCompany = new javax.swing.JLabel();
         pageSelling = new javax.swing.JLabel();
         Exit = new javax.swing.JLabel();
+        pageAgents1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -281,16 +282,29 @@ public class Agents extends javax.swing.JFrame {
             }
         });
 
+        pageAgents1.setFont(new java.awt.Font("Noto Sans Myanmar", 0, 14)); // NOI18N
+        pageAgents1.setText("Menu");
+        pageAgents1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pageAgents1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pageSelling)
-                    .addComponent(pageCompany, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pageMedicine))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pageSelling)
+                            .addComponent(pageCompany, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pageMedicine)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pageAgents1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,17 +318,17 @@ public class Agents extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
+                        .addComponent(pageAgents1)
+                        .addGap(57, 57, 57)
                         .addComponent(pageMedicine)
                         .addGap(18, 18, 18)
                         .addComponent(pageCompany)
                         .addGap(18, 18, 18)
                         .addComponent(pageSelling))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Exit)))
+                    .addComponent(Exit))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -422,6 +436,10 @@ public class Agents extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitMouseClicked
 
+    private void pageAgents1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pageAgents1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pageAgents1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -480,6 +498,7 @@ public class Agents extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel pageAgents1;
     private javax.swing.JLabel pageCompany;
     private javax.swing.JLabel pageMedicine;
     private javax.swing.JLabel pageSelling;
