@@ -412,6 +412,9 @@ public class Medicine extends javax.swing.JFrame {
         MyFabDate = new java.sql.Date(FDate.getTime());
         EDate = ExpDate.getDate();
         MyExpDate = new java.sql.Date(EDate.getTime());
+        if(MedID.getText().isEmpty() || MedName.getText().isEmpty() || MedPrice.getText().isEmpty() || MedQty.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Isi data");
+        } else {
         try {
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/apotekdb", "root", "");
             PreparedStatement add = Con.prepareStatement("insert into MedicineTbl values(?,?,?,?,?,?,?)");
@@ -428,6 +431,7 @@ public class Medicine extends javax.swing.JFrame {
             SelectMed ();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
         }
     }//GEN-LAST:event_AddBtnMouseClicked
 
